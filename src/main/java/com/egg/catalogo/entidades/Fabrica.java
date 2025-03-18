@@ -10,27 +10,27 @@ import jakarta.persistence.Id;
 public class Fabrica {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private String idFabrica;
 
     @Column(nullable = false)
-    private String nombre;
+    private String nombreFabrica;
 
     public Fabrica() {
     }
 
     public String getId() {
-        return id;
+        return idFabrica;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idFabrica = id;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreFabrica;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreFabrica = nombre;
     }
 }

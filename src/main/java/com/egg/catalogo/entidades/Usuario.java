@@ -15,7 +15,7 @@ import jakarta.persistence.UniqueConstraint;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private String idUsuario;
 
     @Column(nullable = false)
     private String email;
@@ -33,11 +33,11 @@ public class Usuario {
     }
 
     public String getId() {
-        return id;
+        return idUsuario;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idUsuario = id;
     }
 
     public String getEmail() {
