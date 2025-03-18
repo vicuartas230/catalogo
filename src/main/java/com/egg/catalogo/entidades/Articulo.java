@@ -28,4 +28,47 @@ public class Articulo {
     @ManyToOne
     @JoinColumn(name = "id_fabrica")
     private Fabrica fabrica;
+
+    public Articulo() {
+    }
+
+    public String getIdArticulo() {
+        return idArticulo;
+    }
+
+    public void setIdArticulo(String idArticulo) {
+        this.idArticulo = idArticulo;
+    }
+
+    public Integer getNroArticulo() {
+        return nroArticulo;
+    }
+
+    public void setNroArticulo(Integer nroArticulo) {
+        this.nroArticulo = nroArticulo;
+    }
+
+    public String getNombreArticulo() {
+        return nombreArticulo;
+    }
+
+    public void setNombreArticulo(String nombreArticulo) {
+        this.nombreArticulo = nombreArticulo;
+    }
+
+    public String getDescripcionArticulo() {
+        return descripcionArticulo;
+    }
+
+    public void setDescripcionArticulo(String descripcionArticulo) {
+        this.descripcionArticulo = descripcionArticulo;
+    }
+
+    public Fabrica getFabrica() {
+        return fabrica;
+    }
+
+    public void setFabrica(Fabrica fabrica) {
+        this.fabrica = fabrica;
+    }
 }
