@@ -1,0 +1,13 @@
+package com.egg.catalogo.enumeraciones;
+
+import java.util.Arrays;
+import java.util.List;
+
+public enum Rol {
+    USER,
+    ADMIN;
+
+    public List<Rol> getRoles() {
+        return Arrays.asList(Rol.values());
+    }
+}

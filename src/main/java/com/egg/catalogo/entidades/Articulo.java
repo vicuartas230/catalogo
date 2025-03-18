@@ -1,7 +1,5 @@
 package com.egg.catalogo.entidades;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

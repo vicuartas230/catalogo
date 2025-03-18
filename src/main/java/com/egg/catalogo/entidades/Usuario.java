@@ -1,7 +1,11 @@
 package com.egg.catalogo.entidades;
 
+import com.egg.catalogo.enumeraciones.Rol;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,6 +29,9 @@ public class Usuario {
 
     @Column(nullable = false)
     private String apellido;
+
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 
     @Column(nullable = false)
     private String password;
@@ -62,6 +69,14 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public String getPassword() {
