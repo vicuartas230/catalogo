@@ -1,0 +1,2 @@
+curl -X POST "http://127.0.0.1:8080/registro" -H "Content-Type: application/json" -d '{"nombre": "Admin", "apellido": "User", "email": "admin@mail.com", "password": "123456", "password2": "123456"}'
+curl "http://127.0.0.1:8080/registro"
