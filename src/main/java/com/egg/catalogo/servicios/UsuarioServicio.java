@@ -10,12 +10,15 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.egg.catalogo.entidades.Usuario;
+import com.egg.catalogo.enumeraciones.Rol;
+import com.egg.catalogo.excepciones.MiExcepcion;
 import com.egg.catalogo.repositorios.UsuarioRepositorio;
 
 import jakarta.servlet.http.HttpSession;
@@ -43,13 +46,14 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void registrarUsuario(String nombre, String apellido, String email, String password, String password2) {
+    public void registrarUsuario(String nombre, String apellido, String email, String password, String password2) throws MiExcepcion {
         validar(nombre, apellido, email, password, password2);
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
-        usuario.setPassword(password);
+        usuario.setRol(Rol.USER);
+        usuario.setPassword(new BCryptPasswordEncoder().encode(password));
         usuarioRepositorio.save(usuario);
     }
 
