@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Fábricas</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Para los iconos -->
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <main>
+        <section class="form-container">
+            <h2>Gestión de Fábricas</h2>
+
+            <!-- Mensajes de éxito o error (puedes usarlo más adelante con backend si es necesario) -->
+            <div class="alert alert-success" id="exito" style="display: none;">¡Operación exitosa!</div>
+            <div class="alert alert-danger" id="error" style="display: none;">¡Hubo un error!</div>
+
+            <a th:href="@{/fabrica/registrar}" class="btn">Nueva Fábrica</a>
+
+            <!-- Tabla para mostrar las fábricas -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fila de ejemplo, simula que hay fábricas cargadas -->
+                    <tr th:each="fabrica : ${fabricas}">
+                        <th th:text="${fabrica.id}"></th>
+                        <td th:text="${fabrica.nombre}"></td>
+                        <td>
+                            <!-- Icono de modificar -->
+                            <a th:href="@{/fabrica/modificar/{id}(id=${fabrica.id})}" class="btn btn-edit">
+                                <i class="fas fa-edit"></i> Modificar
+                            </a>
+                            <!-- Formulario para eliminar -->
+                            <form th:action="@{/fabrica/{id}(id=${fabrica.id})}" th:method="delete"
+                                style="display: inline;">
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro?')">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <!-- Otra fila de ejemplo -->
+                    <!-- <tr>
+                    <td>2</td>
+                    <td>Fábrica XYZ</td>
+                    <td> -->
+                    <!-- Icono de modificar -->
+                    <!-- <a href="#" class="btn btn-edit">
+                            <i class="fas fa-edit"></i> Modificar
+                        </a> -->
+                    <!-- Formulario para eliminar -->
+                    <!-- <form action="#" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro?')">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr> -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+
+</html>

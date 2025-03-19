@@ -1,0 +1,11 @@
+<header th:fragment="header">
+    <nav>
+        <a href="/inicio"><h1>La Casa de Electricidad</h1></a>
+        <div class="nav-buttons">
+            <a th:href="@{/fabrica/lista}" class="btn">Listar fábricas</a>
+            <a th:href="@{/fabrica/registrar}" class="btn">Crear fábricas</a>
+            <a th:href="@{/articulo/lista}" class="btn">Listar artículos</a>
+            <a th:href="@{/logout}" class="btn logout">Cerrar sesión</a>
+        </div>
+    </nav>
+</header>
