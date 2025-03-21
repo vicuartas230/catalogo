@@ -1,5 +1,7 @@
 package com.egg.catalogo.entidades;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Articulo {
+    private static final AtomicInteger atomicInteger = new AtomicInteger(1);
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String idArticulo;
@@ -42,8 +45,8 @@ public class Articulo {
         return nroArticulo;
     }
 
-    public void setNroArticulo(Integer nroArticulo) {
-        this.nroArticulo = nroArticulo;
+    public void setNroArticulo() {
+        this.nroArticulo = atomicInteger.incrementAndGet();
     }
 
     public String getNombreArticulo() {

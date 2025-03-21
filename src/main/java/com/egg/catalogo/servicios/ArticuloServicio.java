@@ -23,14 +23,14 @@ public class ArticuloServicio {
     private FabricaRepositorio fabricaRepositorio;
 
     @Transactional
-    public void crearArticulo(String id, String nombreArticulo, String descripcionArticulo, String idFabrica) throws MiExcepcion {
+    public void crearArticulo(String nombreArticulo, String descripcionArticulo, String idFabrica) throws MiExcepcion {
         validar(nombreArticulo, descripcionArticulo);
         Articulo articulo = new Articulo();
-        articulo.setIdArticulo(id);
         articulo.setNombreArticulo(nombreArticulo);
         articulo.setDescripcionArticulo(descripcionArticulo);
         Fabrica fabrica = fabricaRepositorio.findById(idFabrica).get();
         articulo.setFabrica(fabrica);
+        articulo.setNroArticulo();
         articuloRepositorio.save(articulo);
     }
 
@@ -59,7 +59,7 @@ public class ArticuloServicio {
     }
 
     @Transactional
-    public void eliminarArticulo(String id) {
+    public void eliminarArticulo(String id) throws MiExcepcion {
         articuloRepositorio.deleteById(id);
     }
 
