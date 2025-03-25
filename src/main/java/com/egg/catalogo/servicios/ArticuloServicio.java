@@ -30,7 +30,7 @@ public class ArticuloServicio {
         articulo.setDescripcionArticulo(descripcionArticulo);
         Fabrica fabrica = fabricaRepositorio.findById(idFabrica).get();
         articulo.setFabrica(fabrica);
-        articulo.setNroArticulo();
+        // articulo.setNroArticulo();
         articuloRepositorio.save(articulo);
     }
 

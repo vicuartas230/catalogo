@@ -12,6 +12,10 @@
     <main>
         <section class="welcome">
             <h2>Bienvenido a tu panel</h2>
+            <div>
+                <img th:src="@{/imagen/perfil/{id}(id=${session.usuariosession.id})}" alt="Imagen de perfil">
+                <p th th:text="'Bienvenido ' + ${session.usuariosession.nombre} + '!'"></p>
+            </div>
             <p>Accede a las opciones para gestionar fábricas y artículos.</p>
         </section>
     </main>

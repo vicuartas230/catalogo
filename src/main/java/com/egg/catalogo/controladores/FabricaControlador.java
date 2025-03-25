@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +32,7 @@ public class FabricaControlador {
         try {
             fabricaServicio.crearFabrica(nombre);
             modelo.put("exito", "Fabrica registrada con exito");
-            return "/inicio.html";
+            return "redirect:/fabrica/lista";
         } catch (MiExcepcion ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
@@ -68,14 +67,9 @@ public class FabricaControlador {
         }
     }
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminarFabrica(@PathVariable String id) {
-        return "fabrica_eliminar.html";
-    }
-
-    @DeleteMapping("{id}")
+    @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id) {
         fabricaServicio.eliminarFabrica(id);
-        return "/inicio.html";
+        return "redirect:/fabrica/lista";
     }
 }
