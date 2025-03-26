@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.egg.catalogo.excepciones.MiExcepcion;
 import com.egg.catalogo.servicios.UsuarioServicio;
@@ -33,12 +34,13 @@ public class PortalControlador {
         @RequestParam String nombre,
         @RequestParam String apellido,
         @RequestParam String email,
+        @RequestParam MultipartFile archivo,
         @RequestParam String password,
         @RequestParam String password2,
         ModelMap modelo
     ) {
         try {
-            usuarioServicio.registrarUsuario(nombre, apellido, email, password, password2);
+            usuarioServicio.registrarUsuario(archivo, nombre, apellido, email, password, password2);
             modelo.put("exito", "Usuario registrado con éxito");
             return "redirect:/";
         } catch (MiExcepcion ex) {
