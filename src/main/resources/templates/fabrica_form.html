@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Crear Fabrica</title>
 </head>
 <body>
     <header th:replace="~{fragments/header :: header}"></header>
     <main>
-        <section class="welcome">
+        <section class="form-container">
             <h3>Creación de Fabricas</h3>
             <div>
                 <form th:action="@{/fabrica/registro}" method="POST">
                     <label for="nombre">Nombre: </label>
                     <input type="text" id="nombre" name="nombre" required>
         
-                    <button type="submit">Crear</button>
+                    <button type="submit" class="btn">Crear</button>
                 </form>
             </div>
             <div>
-                <a href="/inicio">Volver</a>
+                <a href="/inicio" class="btn">Volver</a>
             </div>
         </section>
     </main>

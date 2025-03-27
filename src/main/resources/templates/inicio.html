@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <header th:replace="~{fragments/header :: header}"></header>
@@ -13,7 +13,7 @@
         <section class="welcome">
             <h2>Bienvenido a tu panel</h2>
             <div>
-                <img th:src="@{/imagen/perfil/{id}(id=${session.usuariosession.id})}" alt="Imagen de perfil">
+                <img th:src="@{/imagen/perfil/{id}(id=${session.usuariosession.id})}" alt="Imagen de perfil" class="avatar">
                 <p th th:text="'Bienvenido ' + ${session.usuariosession.nombre} + '!'"></p>
             </div>
             <p>Accede a las opciones para gestionar fábricas y artículos.</p>

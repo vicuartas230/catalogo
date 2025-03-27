@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificación de Usuario</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <header>
@@ -30,6 +30,7 @@
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="archivo" name="archivo" required>
 
+                <label for="rol">Rol:</label>
                 <select name="rol">
                     <option>Seleccione un Rol</option>
                     <option th:each="rol : ${roles}" th:value="${usuario.rol}" th:text="${rol}" th:selected="${rol} == ${usuario.rol}"></option>
@@ -43,6 +44,7 @@
 
                 <button type="submit" class="btn">Editar</button>
             </form>
+            <a href="/admin/lista" class="btn">Volver</a>
         </section>
     </main>
 
