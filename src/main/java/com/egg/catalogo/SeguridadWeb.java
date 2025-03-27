@@ -20,7 +20,7 @@ public class SeguridadWeb {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/admin/**", "/fabrica/registrar", "/articulo/registrar", "/fabrica/modificar/**", "/articulo/modificar/**").hasRole("ADMIN")
                     .requestMatchers("/css/**", "/js/**", "/img/**", "/", "/login", "/registrar", "/registro").permitAll()
                     .anyRequest().authenticated())
                 .formLogin((form) -> form
