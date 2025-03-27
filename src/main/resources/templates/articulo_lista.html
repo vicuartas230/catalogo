@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Artículos</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="lista-articulos">
@@ -30,7 +30,8 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Fábrica</th>
-                    <th>Acciones</th>
+                    <th>Imagen</th>
+                    <th sec:authorize="hasRole('ADMIN')">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +40,8 @@
                     <td th:text="${articulo.nombreArticulo}"></td>
                     <td th:text="${articulo.descripcionArticulo}"></td>
                     <td th:text="${articulo.fabrica.nombre}"></td>
-                    <td>
+                    <td><img th:src="@{/imagen/articulo/{id}(id=${articulo.idArticulo})}" alt="Imagen artículo" width="50" height="50"></td>
+                    <td sec:authorize="hasRole('ADMIN')">
                         <a th:href="@{/articulo/modificar/{id}(id=${articulo.idArticulo})}" class="btn btn-edit">
                             <i class="fas fa-edit"></i> Modificar
                         </a>
@@ -53,7 +55,7 @@
             </tbody>
         </table>
         <div>
-            <a th:href="@{/inicio}">Volver</a>
+            <a th:href="@{/inicio}" class="btn">Volver</a>
         </div>
     </section>
 </main>

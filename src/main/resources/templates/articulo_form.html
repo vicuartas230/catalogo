@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Crear Articulo</title>
 </head>
 <body>
     <header th:replace="~{fragments/header :: header}"></header>
     <main>
-        <section class="welcome">
+        <section class="form-container">
             <h3>Creación de Artículos</h3>
             <div>
-                <form th:action="@{/articulo/registro}" method="POST">
+                <form th:action="@{/articulo/registro}" method="POST" enctype="multipart/form-data">
                     <label for="nombre">Nombre: </label>
                     <input type="text" id="nombre" name="nombre" th:value="${nombre}" required>
 
@@ -23,12 +24,15 @@
                         <option>Selecciona la fábrica</option>
                         <option th:each="fabrica : ${fabricas}" th:value="${fabrica.id}" th:text="${fabrica.nombre}"></option>
                     </select>
+
+                    <label for="archivo">Imagen: </label>
+                    <input type="file" id="archivo" name="archivo">
         
-                    <button type="submit">Crear</button>
+                    <button type="submit" class="btn">Crear</button>
                 </form>
             </div>
             <div>
-                <a href="/inicio">Volver</a>
+                <a href="/inicio" class="btn">Volver</a>
             </div>
         </section>
     </main>

@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Modificar Articulo</title>
 </head>
 <body>
     <header th:replace="~{fragments/header :: header}"></header>
-    <main>
-        <section class="welcome">
+    <main class="main-lista-articulos">
+        <section class="form-container">
             <h3>Modificación de Artículos</h3>
             <div>
-                <form th:action="@{/articulo/{id}(id=${articulo.idArticulo})}" method="POST">
+                <form th:action="@{/articulo/{id}(id=${articulo.idArticulo})}" method="POST"  enctype="multipart/form-data">
                     <label for="nombre">Nombre: </label>
                     <input type="text" id="nombre" name="nombre" th:value="${articulo.nombreArticulo}" required>
 
@@ -23,12 +24,15 @@
                         <option>Selecciona la fábrica</option>
                         <option th:each="fabrica : ${fabricas}" th:value="${fabrica.id}" th:text="${fabrica.nombre}" th:selected="${fabrica.id} == ${articulo.fabrica.id}"></option>
                     </select>
+
+                    <label for="archivo"></label>
+                    <input type="file" name="archivo" id="archivo">
         
-                    <button type="submit">Editar</button>
+                    <button type="submit" class="btn">Editar</button>
                 </form>
             </div>
             <div>
-                <a th:href="@{/articulo/lista}">Volver</a>
+                <a th:href="@{/articulo/lista}" class="btn">Volver</a>
             </div>
         </section>
     </main>

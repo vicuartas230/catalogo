@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.egg.catalogo.entidades.Articulo;
 import com.egg.catalogo.entidades.Fabrica;
+import com.egg.catalogo.entidades.Imagen;
 import com.egg.catalogo.excepciones.MiExcepcion;
 import com.egg.catalogo.repositorios.ArticuloRepositorio;
 import com.egg.catalogo.repositorios.FabricaRepositorio;
@@ -22,15 +24,21 @@ public class ArticuloServicio {
     @Autowired
     private FabricaRepositorio fabricaRepositorio;
 
+    @Autowired
+    private ImagenServicio imagenServicio;
+
     @Transactional
-    public void crearArticulo(String nombreArticulo, String descripcionArticulo, String idFabrica) throws MiExcepcion {
+    public void crearArticulo(String nombreArticulo, String descripcionArticulo, String idFabrica, MultipartFile archivo) throws MiExcepcion {
         validar(nombreArticulo, descripcionArticulo);
         Articulo articulo = new Articulo();
         articulo.setNombreArticulo(nombreArticulo);
         articulo.setDescripcionArticulo(descripcionArticulo);
         Fabrica fabrica = fabricaRepositorio.findById(idFabrica).get();
         articulo.setFabrica(fabrica);
-        // articulo.setNroArticulo();
+        if (!archivo.isEmpty()) {
+            Imagen imagen = imagenServicio.guardar(archivo);
+            articulo.setImagen(imagen);
+        }
         articuloRepositorio.save(articulo);
     }
 
@@ -40,7 +48,7 @@ public class ArticuloServicio {
     }
 
     @Transactional
-    public void modificarArticulo(String id, String nombreArticulo, String descripcionArticulo, String idFabrica) throws MiExcepcion {
+    public void modificarArticulo(String id, String nombreArticulo, String descripcionArticulo, String idFabrica, MultipartFile archivo) throws MiExcepcion {
         validar(nombreArticulo, descripcionArticulo);
         Optional<Articulo> respuesta = articuloRepositorio.findById(id);
         if (respuesta.isPresent()) {
@@ -49,6 +57,10 @@ public class ArticuloServicio {
             articulo.setDescripcionArticulo(descripcionArticulo);
             Fabrica fabrica = fabricaRepositorio.findById(idFabrica).get();
             articulo.setFabrica(fabrica);
+            if (!archivo.isEmpty()) {
+                Imagen imagen = imagenServicio.guardar(archivo);
+                articulo.setImagen(imagen);
+            }
             articuloRepositorio.save(articulo);
         }
     }

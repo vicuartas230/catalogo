@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.egg.catalogo.excepciones.MiExcepcion;
 import com.egg.catalogo.servicios.ArticuloServicio;
@@ -30,9 +31,9 @@ public class ArticuloControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, @RequestParam String descripcion, @RequestParam String idFabrica, ModelMap modelo) {
+    public String registro(@RequestParam String nombre, @RequestParam String descripcion, @RequestParam String idFabrica, @RequestParam MultipartFile archivo, ModelMap modelo) {
         try {
-            articuloServicio.crearArticulo(nombre, descripcion, idFabrica);
+            articuloServicio.crearArticulo(nombre, descripcion, idFabrica, archivo);
             modelo.put("exito", "Articulo registrado con exito");
             return "redirect:/articulo/lista";
         } catch (MiExcepcion ex) {
@@ -57,9 +58,9 @@ public class ArticuloControlador {
     }
 
     @PostMapping("{id}")
-    public String modificar(@PathVariable String id, String nombre, String descripcion, String idFabrica, ModelMap modelo) {
+    public String modificar(@PathVariable String id, String nombre, String descripcion, String idFabrica, ModelMap modelo, MultipartFile archivo) {
         try {
-            articuloServicio.modificarArticulo(id, nombre, descripcion, idFabrica);
+            articuloServicio.modificarArticulo(id, nombre, descripcion, idFabrica, archivo);
             modelo.put("exito", "Artículo modificado con éxito!");
             return "redirect:/articulo/lista";
         } catch (MiExcepcion ex) {
