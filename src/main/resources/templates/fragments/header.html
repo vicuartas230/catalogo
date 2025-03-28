@@ -2,6 +2,7 @@
     <nav>
         <a href="/inicio"><h1>La Casa de Electricidad</h1></a>
         <div class="nav-buttons">
+            <a sec:authorize="hasRole('ADMIN')" href="/admin/lista" class="btn">Listar Usuarios</a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/fabrica/registrar}" class="btn">Crear fábricas</a>
             <a th:href="@{/fabrica/lista}" class="btn">Listar fábricas</a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/articulo/registrar}" class="btn">Crear Artículos</a>
